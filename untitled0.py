@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jul 13 09:49:12 2018
+
+@author: Naresh
+"""
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import pandas as pd
@@ -169,5 +176,6 @@ for item in range(len(hotel_review_num)):
     i= i.split()
     print(i)
     hotel_review_num[item]=i[0]
+import pandas as pd
 df = pd.DataFrame(list(zip(rooms, check_in, check_out,hotel_review_num,hotel_rating,hotel_price,hotel_address,hotel_info,hotel_last,hotel_name,hotel_url)),columns=['rooms', 'check_in',' check_out','hotel_review_num','hotel_rating','hotel_price','hotel_address','hotel_info','hotel_last','hotel_name','hotel_url'])
 df.to_json("out.json")
