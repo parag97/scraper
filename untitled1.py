@@ -39,7 +39,7 @@ for link in pages:
     driver.close()
 for item in links:
     item = base+item[1:]
-    print(item)
+    
     driver = webdriver.Firefox(executable_path="C:\\Users\\Naresh\\Anaconda3\\Lib\\site-packages\\selenium\\webdriver\\firefox\\geckodriver.exe")
     driver.get(item)
     soup = BeautifulSoup(driver.page_source)
@@ -79,7 +79,7 @@ for item in links:
                 li.append(p.text)
             except:
                 pass
-            print(li)
+        
         hotel_info.append(li)
     except:
         hotel_info.append(["nan"])
@@ -117,7 +117,7 @@ for item in links:
                 for element in io:
                     li.append(element.text)
                     li.append((i.text))
-                print(li)
+            
                 hotel_last.append(li)
     except:
         hotel_last.append("nan")
@@ -133,41 +133,34 @@ for item in links:
             pass
     except:
         hotel_info.append("nan")
-    print(soup.find("h1", {"class": "hotel-title"}).text)
     driver.close()
 for item in range(len(check_out)):
     i = check_out[item]
     i= i.split()
-    print(i)
     check_out[item]=i[0]
 
 for item in range(len(check_in)):
     i = check_in[item]
     i= i.split()
-    print(i)
     check_in[item]=i[0]
 
 for item in range(len(rooms)):
     i = rooms[item]
     i= i.split()
-    print(i)
     rooms[item]=i[0]
 
 for item in range(len(hotel_price)):
     i = hotel_price[item]
     i= i.split()
-    print(i)
     hotel_price[item]=i[0]
 
 for item in range(len(hotel_rating)):
     i = hotel_rating[item]
     i= i.split()
-    print(i)
     hotel_rating[item]=i[0]
 for item in range(len(hotel_review_num)):
     i = hotel_review_num[item]
     i= i.split()
-    print(i)
     hotel_review_num[item]=i[0]
 df = pd.DataFrame(list(zip(rooms, check_in, check_out,hotel_review_num,hotel_rating,hotel_price,hotel_address,hotel_info,hotel_last,hotel_name,hotel_url)),columns=['rooms', 'check_in',' check_out','hotel_review_num','hotel_rating','hotel_price','hotel_address','hotel_info','hotel_last','hotel_name','hotel_url'])
 df.to_json("out.json")
